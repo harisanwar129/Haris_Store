@@ -19,6 +19,19 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->longText('alamat_1');
+            $table->longText('alamat_2');
+            $table->integer('provinces_id');
+            $table->integer('regencies_id');
+            $table->integer('kode_pos');
+            $table->string('negara');
+             $table->string('no_hp');
+              $table->string('nama_toko');
+             $table->integer('kategori_id');
+              $table->integer('status-toko');
+
+            $table->softDeletes();
             $table->rememberToken();
             $table->timestamps();
         });
