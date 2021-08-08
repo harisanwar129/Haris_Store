@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
              $table->string('no_hp');
               $table->string('nama_toko');
              $table->integer('kategori_id');
-              $table->integer('status-toko');
+              $table->integer('status_toko');
 
             $table->softDeletes();
             $table->rememberToken();
