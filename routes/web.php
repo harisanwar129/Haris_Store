@@ -38,8 +38,9 @@ Route::prefix('admin')
     ->namespace('Admin')
     ->group(function(){
     Route::get('/','DashboardController@index')->name('admin-dashboard');
-     Route::resource('user','UserController');
+      Route::resource('user','UserController');
     Route::resource('kategori','KategoriController');
+ Route::resource('produk','ProdukController');
 
     });
 

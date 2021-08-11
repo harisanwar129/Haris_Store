@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Halaman User
+    Halaman Produk
 @endsection    
 
 
@@ -14,9 +14,9 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">User</h2>
+                <h2 class="dashboard-title">Produk</h2>
                 <p class="dashboard-subtitle">
-               Tambah User
+               Tambah Produk
                 </p>
               </div>
               <div class="dashboard-content">
@@ -33,40 +33,47 @@
                 @endif
                     <div class="card">
                         <div class="card-body">
-                      <form action="{{route('user.update',$item->id)}}" method="POST" enctype="multipart/form-data">
-                      @method('PUT')
+                      <form action="{{route('produk.store')}}" method="POST" enctype="multipart/form-data">
                       @csrf
                       <div class="row">
-                       <div class="col-md-12">
+                          <div class="col-md-12">
                               <div class="form-group">
-                              <label for="Nama User">Nama User</label>
-                              <input type="text" name="name" id="Nama User" class="form-control" required value="{{$item->name}}">
+                              <label for="Nama Produk">Nama Produk</label>
+                              <input type="text" name="nama" id="Nama Produk" class="form-control" required>
                               </div>
                           </div>
                           <div class="col-md-12">
                               <div class="form-group">
-                              <label for="Email">Email</label>
-                              <input type="email" name="email" id="Email" class="form-control" required value="{{$item->email}}">
-                              </div>
-                          </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                              <label for="Password">Password</label>
-                              <input type="password" name="password" id="Password" class="form-control">
-                              <span>Jangan Di Isi Jika Password tidak Di Ubah</span>
-                              </div>
-                          </div>
-                           <div class="col-md-12">
-                              <div class="form-group">
-                              <label>Level</label>
-                             <select name="roles" required class="form-control" >
-                             <option value="{{$item->roles}}">Tidak Diganti</option>
-                             <option value="ADMIN" >ADMIN</option>
-                             <option value="USER" >USER</option>
+                              <label for="Pemilik">Pemilik</label>
+                             <select name="users_id" class="form-control">
+                             @foreach($users as $user)
+                             <option value="{{$user->id}}">{{$user->name}}</option>
+                             @endforeach
                              </select>
                               </div>
                           </div>
-                      </div>
+                          <div class="col-md-12">
+                              <div class="form-group">
+                              <label for="kategori">kategori</label>
+                             <select name="kategori_id" class="form-control">
+                             @foreach($categories as $categori)
+                             <option value="{{$categori->id}}">{{$categori->nama}}</option>
+                             @endforeach
+                             </select>
+                              </div>
+                          </div>
+                               <div class="col-md-12">
+                              <div class="form-group">
+                              <label for="Harga">Harga</label>
+                             <input type="number" name="harga" class="form-control">
+                              </div>
+                          </div>
+                                <div class="col-md-12">
+                              <div class="form-group">
+                              <label for="Deskripsi">Deskripsi</label>
+                             <textarea type="text" name="deskripsi" id="editor" cols="30" rows="10"></textarea>
+                              </div>
+                          </div>
                       </div>
                       <div class="row">
                           <div class="col text-right">
@@ -86,4 +93,9 @@
 
     @endsection
 
-    
+    @push('addon-script')
+      <script src="https://cdn.ckeditor.com/4.16.1/standard/ckeditor.js"></script>
+        <script>
+                CKEDITOR.replace( 'editor' );
+        </script>
+    @endpush
