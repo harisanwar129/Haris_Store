@@ -33,8 +33,13 @@
             >
             <a
                href="{{route('produk.index')}}"
-              class="list-group-item list-group-item-action {{(request()->is('admin/produk*'))? 'active':''}}"
+              class="list-group-item list-group-item-action {{(request()->is('admin/produk'))? 'active':''}}"
               >Produk</a
+            >
+            <a
+               href="{{route('produk-galleri.index')}}"
+              class="list-group-item list-group-item-action {{(request()->is('admin/produk-galleri*'))? 'active':''}}"
+              >Produk Galleri</a
             >
             <a
               href="{{route('kategori.index')}}"

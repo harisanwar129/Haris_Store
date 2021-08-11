@@ -41,6 +41,7 @@ Route::prefix('admin')
       Route::resource('user','UserController');
     Route::resource('kategori','KategoriController');
  Route::resource('produk','ProdukController');
+ Route::resource('produk-galleri','ProdukGalleriController');
 
     });
 

@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\softDeletes;
+
 class ProdukGalleri extends Model
 {
-     use softDeletes;
+
      protected $table="produk_galeri";
      protected $fillable=[
         'photo','produk_id'
