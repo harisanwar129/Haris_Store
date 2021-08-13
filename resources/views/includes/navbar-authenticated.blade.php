@@ -9,7 +9,7 @@
         </a>
         <button
           class="navbar-toggler"
-          type="button"
+          type="button" 
           data-toggle="collapse"
           data-target="#navbarResponsive"
           aria-controls="navbarResponsive"

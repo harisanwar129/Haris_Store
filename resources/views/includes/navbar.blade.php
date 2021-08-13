@@ -3,12 +3,12 @@
       data-aos="fade-down"
     >
       <div class="container">
-        <a class="navbar-brand" href="{{route('home')}}">
+        <a class="navbar-brand" href="{{route('utama')}}">
           <img src="/images/logo.svg" alt="" />
         </a> 
         <button
           class="navbar-toggler"
-          type="button"
+          type="button" 
           data-toggle="collapse"
           data-target="#navbarResponsive"
           aria-controls="navbarResponsive"
@@ -20,25 +20,79 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="{{route('home')}}">Home </a>
+              <a class="nav-link" href="{{route('utama')}}">Beranda </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{route('categories')}}">Categories</a>
+              <a class="nav-link" href="{{route('kategori')}}">Kategori</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Rewards</a>
             </li>
+              @guest
+              
             <li class="nav-item">
-              <a class="nav-link" href="/register.html">Sign Up</a>
+              <a class="nav-link" href="{{route('register')}}">Sign Up</a>
             </li>
             <li class="nav-item">
               <a
                 class="btn btn-success nav-link px-4 text-white"
-                href="/login.html"
+                href="{{route('login')}}"
                 >Sign In</a
               >
             </li>
+              @endguest            
           </ul>
+          @auth
+          <ul class="navbar-nav d-none d-lg-flex">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link"
+                href="#"
+                id="navbarDropdown"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <img
+                  src="/images/icon-user.png"
+                  alt=""
+                  class="rounded-circle mr-2 profile-picture"
+                />
+             {{Auth::user()->name}}
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{route('beranda')}}">Beranda</a>
+                <a class="dropdown-item" href="{{route('beranda-atur-pengguna')}}"
+                  >Pengaturan</a
+                >
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">Logout</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-inline-block mt-2" href="#">
+                <img src="/images/icon-cart-empty.svg" alt="" />
+              </a>
+            </li>
+          </ul>
+
+          <!-- Mobile Menu -->
+          <ul class="navbar-nav d-block d-lg-none">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                Hi, Angga
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link d-inline-block" href="#">
+                Cart
+              </a>
+            </li>
+          </ul>
+          @endauth
         </div>
       </div>
     </nav>
