@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
- 
+
 
 Route::get('/', 'HomeController@index')->name('utama');
 Route::get('/kategori', 'CategoryController@index')->name('kategori');
 Route::get('/kategori/{id}', 'CategoryController@detail')->name('kategori-detail');
 Route::get('/details/{id}', 'DetailController@index')->name('detail');
-Route::get('/cart', 'CartController@index')->name('cart');
+Route::post('/details/{id}', 'DetailController@add')->name('detail-tambah');
+Route::get('/cart', 'CartController@index')->name('pembelian');
 Route::get('/success', 'CartController@success')->name('success');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
@@ -36,16 +37,13 @@ Route::get('/dashboard/settings', 'DashboardSettingController@store')->name('das
 Route::get('/beranda/pengguna', 'DashboardSettingController@account')->name('beranda-atur-pengguna');
 
 Route::prefix('admin')
-    ->namespace('Admin')
-    ->group(function(){
-    Route::get('/','DashboardController@index')->name('admin-dashboard');
-      Route::resource('user','UserController');
-    Route::resource('kategori','KategoriController');
- Route::resource('produk','ProdukController');
- Route::resource('produk-galleri','ProdukGalleriController');
-
-    });
+  ->namespace('Admin')
+  ->group(function () {
+    Route::get('/', 'DashboardController@index')->name('admin-dashboard');
+    Route::resource('user', 'UserController');
+    Route::resource('kategori', 'KategoriController');
+    Route::resource('produk', 'ProdukController');
+    Route::resource('produk-galleri', 'ProdukGalleriController');
+  });
 
 Auth::routes();
-
-
