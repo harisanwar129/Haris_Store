@@ -68,8 +68,11 @@
                 >
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">Logout</a>
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Logout</a>
+                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
               </div>
             </li>
             <li class="nav-item">
@@ -83,7 +86,7 @@
           <ul class="navbar-nav d-block d-lg-none">
             <li class="nav-item">
               <a class="nav-link" href="#">
-                Hi, Angga
+                Hi, haris
               </a>
             </li>
             <li class="nav-item">

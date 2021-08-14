@@ -33,7 +33,7 @@ Route::get('/dashboard/transactions/', 'DashboardTransactionController@index')->
 Route::get('/dashboard/transactions/{id}', 'DashboardTransactionController@details')->name('dashboard-transaction-details');
 
 Route::get('/dashboard/settings', 'DashboardSettingController@store')->name('dashboard-transaction-setting');
-Route::get('/dashboard/pengguna', 'DashboardSettingController@account')->name('beranda-atur-pengguna');
+Route::get('/beranda/pengguna', 'DashboardSettingController@account')->name('beranda-atur-pengguna');
 
 Route::prefix('admin')
     ->namespace('Admin')

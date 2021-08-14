@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
+use App\Kategori;
 use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -47,12 +49,33 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $categories = Kategori::all();
+        return view('auth.register', [
+            'categories' => $categories
+
+        ]);
+    }
+
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nama_toko' => ['nullable', 'string', 'max:255'],
+            'kategori_id' => ['nullable', 'integer', 'exists:kategori_id,id'],
+            'is_store_open' => ['required'],
+
+
+
         ]);
     }
 
@@ -68,10 +91,21 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'nama_toko' => isset($data['nama_toko']) ? $data['nama_toko'] : '',
+            'kategori_id' => isset($data['kategori_id']) ? $data['kategori_id'] : NULL,
+            'status_toko' => isset($data['is_store_open']) ? 1 : 0
+
+
         ]);
-    } 
- 
-    public function success(){
+    }
+
+    public function success()
+    {
         return view('auth.success');
+    }
+
+    public function check(Request $request)
+    {
+        return User::where('email', $request->email)->count() > 0 ? 'Unavailable' : 'Available';
     }
 }
