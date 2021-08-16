@@ -102,7 +102,7 @@
           <div class="row">
            @php $incrementProduct = 0 @endphp
           @forelse($products as $product)
-          <div
+          <div 
                       class="col-6 col-md-4 col-lg-3"
                       data-aos="fade-up"
                       data-aos-delay="{{$incrementProduct+=100}}"

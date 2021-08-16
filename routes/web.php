@@ -17,10 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'HomeController@index')->name('utama');
 Route::get('/kategori', 'CategoryController@index')->name('kategori');
 Route::get('/kategori/{id}', 'CategoryController@detail')->name('kategori-detail');
-Route::get('/details/{id}', 'DetailController@index')->name('detail');
-Route::post('/details/{id}', 'DetailController@add')->name('detail-tambah');
-Route::get('/cart', 'CartController@index')->name('pembelian');
-Route::get('/success', 'CartController@success')->name('success');
+Route::get('/detail/{id}', 'DetailController@index')->name('detail');
+Route::post('/detail/{id}', 'DetailController@add')->name('detail-tambah');
+Route::get('/pembelian', 'PembelianController@index')->name('pembelian');
+Route::delete('pembelian/{id}', 'PembelianController@hapus')->name('pembelian-hapus');
+Route::get('/success', 'Pembelian@success')->name('success');
 
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
