@@ -26,29 +26,29 @@
           </div>
           <div class="list-group list-group-flush">
             <a
-              href="/dashboard.html"
-              class="list-group-item list-group-item-action "
-              >Dashboard</a
+              href="{{ route('beranda') }}"
+              class="list-group-item list-group-item-action  {{(request()->is('beranda'))? 'active':''}}"
+              >Beranda</a
             >
             <a
-              href="/dashboard-products.html"
-              class="list-group-item list-group-item-action"
-              >My Products</a
+              href="{{ route('beranda-product') }}"
+              class="list-group-item list-group-item-action  {{(request()->is('beranda/product*'))? 'active':''}}"
+              >Produk Saya</a
             >
             <a
-              href="/dashboard-transactions.html"
-              class="list-group-item list-group-item-action"
-              >Transactions</a
+              href="{{ route('beranda-transaction') }}"
+              class="list-group-item list-group-item-action {{(request()->is('beranda/transaction*'))? 'active':''}}"
+              >Transaksi</a
             >
             <a
-              href="/dashboard-settings.html"
-              class="list-group-item list-group-item-action"
-              >Store Settings</a
+              href="{{ route('beranda-transaction-setting') }}"
+              class="list-group-item list-group-item-action {{(request()->is('beranda/setting*'))? 'active':''}}"
+              >Pengaturan Toko</a
             >
             <a
-              href="/dashboard-account.html"
-              class="list-group-item list-group-item-action"
-              >My Account</a
+              href="{{ route('beranda-atur-pengguna') }}"
+              class="list-group-item list-group-item-action {{(request()->is('beranda/pengguna*'))? 'active':''}}"
+              > Account Saya</a
             >
           </div>
         </div>
@@ -96,22 +96,33 @@
                       alt=""
                       class="rounded-circle mr-2 profile-picture"
                     />
-                    Hi, Angga
+                    Hi, {{Auth::user()->name}}
                   </a>
                   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/index.html"
-                      >Back to Store</a
-                    >
-                    <a class="dropdown-item" href="/dashboard-account.html"
-                      >Settings</a
+                    <a class="dropdown-item" href="{{route('beranda')}}">Beranda</a>
+                    <a class="dropdown-item" href="{{route('beranda-atur-pengguna')}}"
+                      >Pengaturan</a
                     >
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/">Logout</a>
-                  </div>
+                    <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                        document.getElementById('logout-form').submit();">Logout</a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                      </div>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link d-inline-block mt-2" href="#">
+                  <a class="nav-link d-inline-block mt-2" href="{{ route('pembelian') }}">
+                    @php
+                    $carts=\App\Pembelian::where('users_id', Auth::user()->id)->count();
+                    @endphp
+                    @if($carts>0)
+                    <img src="/images/icon-cart-filled.svg" alt="" />
+                    <div class="cart-badge">{{ $carts }}</div>
+                    @else
                     <img src="/images/icon-cart-empty.svg" alt="" />
+                    @endif
                   </a>
                 </li>
               </ul>
@@ -119,7 +130,7 @@
               <ul class="navbar-nav d-block d-lg-none mt-3">
                 <li class="nav-item">
                   <a class="nav-link" href="#">
-                    Hi, Angga
+                    Hi,{{Auth::user()->name}}
                   </a>
                 </li>
                 <li class="nav-item">

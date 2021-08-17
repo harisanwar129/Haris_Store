@@ -25,12 +25,12 @@ Route::get('/checkout/callback', 'CheckoutController@callback')->name('midtrans-
 Route::get('/success', 'Pembelian@success')->name('success');
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
-
+ 
 Route::group(['middleware'=>['auth']],function (){
   Route::get('/pembelian', 'PembelianController@index')->name('pembelian');
   Route::delete('pembelian/{id}', 'PembelianController@hapus')->name('pembelian-hapus');
   Route::post('/checkout', 'CheckoutController@process')->name('checkout');
-  Route::get('/beranda', 'DashboardController@index')->name('beranda');
+  Route::get('/beranda', 'BerandaController@index')->name('beranda');
   Route::get('/beranda/product', 'DashboardProductController@index')->name('beranda-product');
   Route::get('/beranda/product/create', 'DashboardProductController@create')->name('beranda-product-create');
   Route::get('/beranda/product/{id}', 'DashboardProductController@details')->name('beranda-product-detail');

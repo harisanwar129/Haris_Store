@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\User;
 
 class Transaksi extends Model
 {
@@ -19,4 +20,9 @@ class Transaksi extends Model
   protected $hidden=[
     
   ];
+
+  public function user(){
+   return $this->belongsTo(User::class,'users_id','id');
+}
+
 }
