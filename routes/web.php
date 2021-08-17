@@ -19,29 +19,34 @@ Route::get('/kategori', 'CategoryController@index')->name('kategori');
 Route::get('/kategori/{id}', 'CategoryController@detail')->name('kategori-detail');
 Route::get('/detail/{id}', 'DetailController@index')->name('detail');
 Route::post('/detail/{id}', 'DetailController@add')->name('detail-tambah');
-Route::get('/pembelian', 'PembelianController@index')->name('pembelian');
-Route::delete('pembelian/{id}', 'PembelianController@hapus')->name('pembelian-hapus');
-Route::get('/success', 'Pembelian@success')->name('success');
 
-Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+
 Route::get('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
-
+Route::get('/success', 'Pembelian@success')->name('success');
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
-Route::get('/dashboard', 'DashboardController@index')->name('beranda');
-Route::get('/dashboard/products', 'DashboardProductController@index')->name('dashboard-product');
-Route::get('/dashboard/products/create', 'DashboardProductController@create')->name('dashboard-product-create');
-Route::get('/dashboard/products/{id}', 'DashboardProductController@details')->name('dashboard-product-details');
 
-Route::get('/dashboard/transactions/', 'DashboardTransactionController@index')->name('dashboard-transaction');
+Route::group(['middleware'=>['auth']],function (){
+  Route::get('/pembelian', 'PembelianController@index')->name('pembelian');
+  Route::delete('pembelian/{id}', 'PembelianController@hapus')->name('pembelian-hapus');
+  Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+  Route::get('/beranda', 'DashboardController@index')->name('beranda');
+  Route::get('/beranda/product', 'DashboardProductController@index')->name('beranda-product');
+  Route::get('/beranda/product/create', 'DashboardProductController@create')->name('beranda-product-create');
+  Route::get('/beranda/product/{id}', 'DashboardProductController@details')->name('beranda-product-detail');
+  Route::get('/beranda/transaction/', 'DashboardTransactionController@index')->name('beranda-transaction');
+  Route::get('/beranda/transactions/{id}', 'DashboardTransactionController@details')->name('beranda-transaction-detail');
 
-Route::get('/dashboard/transactions/{id}', 'DashboardTransactionController@details')->name('dashboard-transaction-details');
+  Route::get('/beranda/settings', 'DashboardSettingController@store')->name('beranda-transaction-setting');
+  Route::get('/beranda/pengguna', 'DashboardSettingController@account')->name('beranda-atur-pengguna');
 
-Route::get('/dashboard/settings', 'DashboardSettingController@store')->name('dashboard-transaction-setting');
-Route::get('/beranda/pengguna', 'DashboardSettingController@account')->name('beranda-atur-pengguna');
+
+});
+
 
 Route::prefix('admin')
   ->namespace('Admin')
+  ->middleware(['auth','admin'])
   ->group(function () {
     Route::get('/', 'DashboardController@index')->name('admin-dashboard');
     Route::resource('user', 'UserController');

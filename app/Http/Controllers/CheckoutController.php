@@ -49,6 +49,9 @@ class CheckoutController extends Controller
             ]);
         }
         
+        //Delete cart data
+        Pembelian::where('users_id',Auth::user()->id)->delete();
+
     // konfigurasi midtrans
             Config::$serverKey = config('services.midtrans.serverKey');
             Config::$isProduction =config('services.midtrans.isProduction');
