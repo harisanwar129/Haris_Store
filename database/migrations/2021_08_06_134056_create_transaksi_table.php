@@ -20,7 +20,7 @@ class CreateTransaksiTable extends Migration
             $table->integer('harga_total');
             $table->string('status_transaksi');
             $table->string('resi');
-            
+            $table->softDeletes();
             $table->timestamps();
         });
     }

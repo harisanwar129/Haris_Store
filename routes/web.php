@@ -23,6 +23,9 @@ Route::get('/pembelian', 'PembelianController@index')->name('pembelian');
 Route::delete('pembelian/{id}', 'PembelianController@hapus')->name('pembelian-hapus');
 Route::get('/success', 'Pembelian@success')->name('success');
 
+Route::post('/checkout', 'CheckoutController@process')->name('checkout');
+Route::get('/checkout/callback', 'CheckoutController@callback')->name('midtrans-callback');
+
 Route::get('/register/success', 'Auth\RegisterController@success')->name('register-success');
 
 Route::get('/dashboard', 'DashboardController@index')->name('beranda');
