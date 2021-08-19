@@ -8,7 +8,7 @@ use App\TransaksiDetail;
 use App\User;
 class BerandaController extends Controller
 {
-   /**
+   /** 
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable

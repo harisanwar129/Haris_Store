@@ -31,9 +31,16 @@ Route::group(['middleware'=>['auth']],function (){
   Route::delete('pembelian/{id}', 'PembelianController@hapus')->name('pembelian-hapus');
   Route::post('/checkout', 'CheckoutController@process')->name('checkout');
   Route::get('/beranda', 'BerandaController@index')->name('beranda');
-  Route::get('/beranda/product', 'DashboardProductController@index')->name('beranda-product');
-  Route::get('/beranda/product/create', 'DashboardProductController@create')->name('beranda-product-create');
-  Route::get('/beranda/product/{id}', 'DashboardProductController@details')->name('beranda-product-detail');
+  Route::get('/beranda/produk', 'BerandaProdukController@index')->name('beranda-produk');
+  Route::get('/beranda/produk/create', 'BerandaProdukController@create')->name('beranda-produk-create');
+  Route::post('/beranda/store', 'BerandaProdukController@store')->name('beranda-produk-store');
+  Route::get('/beranda/produk/{id}', 'BerandaProdukController@detail')->name('beranda-produk-detail');
+
+  Route::post('/beranda/produk/{id}','BerandaProdukController@update')->name('beranda-produk-update');
+  Route::post('/beranda/produk/galleri/upload', 'BerandaProdukController@uploadGalleri')->name('beranda-produk-galleri-upload');
+  Route::get('/beranda/produk/galleri/delete/{id}', 'BerandaProdukController@deleteGalleri')->name('beranda-produk-galleri-delete');
+
+
   Route::get('/beranda/transaction/', 'DashboardTransactionController@index')->name('beranda-transaction');
   Route::get('/beranda/transactions/{id}', 'DashboardTransactionController@details')->name('beranda-transaction-detail');
 

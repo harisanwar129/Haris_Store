@@ -12,7 +12,7 @@ class Produk extends Model
         'nama','users_id','kategori_id','harga','deskripsi','slug'
     ];
     protected $hidden=[
-       
+        
     ];
 
     public function galleri(){

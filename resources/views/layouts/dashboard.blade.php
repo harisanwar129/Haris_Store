@@ -31,8 +31,8 @@
               >Beranda</a
             >
             <a
-              href="{{ route('beranda-product') }}"
-              class="list-group-item list-group-item-action  {{(request()->is('beranda/product*'))? 'active':''}}"
+              href="{{ route('beranda-produk') }}"
+              class="list-group-item list-group-item-action  {{(request()->is('beranda/produk*'))? 'active':''}}"
               >Produk Saya</a
             >
             <a

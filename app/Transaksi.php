@@ -12,8 +12,8 @@ class Transaksi extends Model
       'users_id',
       'harga_asuransi',
       'ongkir',
-      'harga_total',
-      'status_transaksi',
+      'harga_total', 
+      'status_transaksi', 
       'kode'
        
   ];
