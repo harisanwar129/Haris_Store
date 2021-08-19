@@ -22,20 +22,21 @@
               <div class="dashboard-content">
                 <div class="row">
                   <div class="col-12">
-                    <form action="">
+                    <form action="{{ route('beranda-atur-redirect','beranda-atur-store') }}" method="POST" enctype="multipart/form-data">
+                      @csrf
                       <div class="card">
                         <div class="card-body">
                           <div class="row">
                             <div class="col-md-6">
                               <div class="form-group">
-                                <label for="storeName">Store Name</label>
+                                <label for="storeName">Nama Toko</label>
                                 <input
                                   type="text"
                                   class="form-control"
                                   id="storeName"
                                   aria-describedby="emailHelp"
-                                  name="storeName"
-                                  value="Papel La Casa"
+                                  name="nama_toko"
+                                  value="{{ $user->nama_toko }}"
                                 />
                               </div>
                             </div>
@@ -44,13 +45,12 @@
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="category">Category</label>
-                                <select
-                                  name="category"
-                                  id="category"
-                                  class="form-control"
-                                >
-                                  <option value="Furniture">Furniture</option>
-                                </select>
+                                <select name="kategori_id" class="form-control">
+                                  <option value="{{ $user->kategori_id }}">Tidak Diganti</option>
+                                  @foreach($categories as $categori)
+                                  <option value="{{$categori->id}}">{{$categori->nama}}</option>
+                                  @endforeach
+                                  </select>
                               </div>
                             </div>
                           </div>
@@ -67,10 +67,10 @@
                                   <input
                                     class="custom-control-input"
                                     type="radio"
-                                    name="is_store_open"
+                                    name="status_toko"
                                     id="openStoreTrue"
-                                    value="true"
-                                    checked
+                                    value="1"
+                                   {{ $user->status_toko==1? 'checked':'' }}
                                   />
                                   <label
                                     class="custom-control-label"
@@ -84,9 +84,10 @@
                                   <input
                                     class="custom-control-input"
                                     type="radio"
-                                    name="is_store_open"
+                                    name="status_toko"
                                     id="openStoreFalse"
-                                    value="false"
+                                    value="0"
+                                    {{ $user->status_toko == 0 || $user->status_toko == NULL ? 'checked' :''  }}
                                   />
                                   <label
                                     makasih

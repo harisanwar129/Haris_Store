@@ -44,8 +44,10 @@ Route::group(['middleware'=>['auth']],function (){
   Route::get('/beranda/transaction/', 'DashboardTransactionController@index')->name('beranda-transaction');
   Route::get('/beranda/transactions/{id}', 'DashboardTransactionController@details')->name('beranda-transaction-detail');
 
-  Route::get('/beranda/settings', 'DashboardSettingController@store')->name('beranda-transaction-setting');
-  Route::get('/beranda/pengguna', 'DashboardSettingController@account')->name('beranda-atur-pengguna');
+  Route::get('/beranda/settings', 'BerandaSettingController@store')->name('beranda-atur-store');
+  Route::get('/beranda/pengguna', 'BerandaSettingController@account')->name('beranda-atur-pengguna');
+  Route::post('/beranda/pengguna/{redirect}', 'BerandaSettingController@update')->name('beranda-atur-redirect');
+  
 
 
 });

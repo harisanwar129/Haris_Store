@@ -41,7 +41,7 @@
               >Transaksi</a
             >
             <a
-              href="{{ route('beranda-transaction-setting') }}"
+              href="{{ route('beranda-atur-store') }}"
               class="list-group-item list-group-item-action {{(request()->is('beranda/setting*'))? 'active':''}}"
               >Pengaturan Toko</a
             >
